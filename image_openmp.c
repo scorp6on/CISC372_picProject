@@ -59,7 +59,6 @@ uint8_t getPixelValue(Image* srcImage,int x,int y,int bit,Matrix algorithm){
 //Returns: Nothing
 void convolute(Image* srcImage,Image* destImage,Matrix algorithm){
     int row,pix,bit;
-    // Parallelize rows (and columns) with static scheduling; each thread writes unique pixels.
     #pragma omp parallel for schedule(static) private(pix,bit)
     for (row=0; row<srcImage->height; row++){
         for (pix=0; pix<srcImage->width; pix++){
